@@ -155,3 +155,90 @@ validateName(name)
 
 
 
+//  # Email:
+
+let emails = []
+
+function validateEmail(email) {
+    email = email.trim()
+
+    if (email.length < 10) {
+        console.log("email khass yekon fih 10 les letres 3la l2a9al")
+        return false
+    }
+    let atCount = 0
+    for (let i = 0; i < email.length; i++) {
+        if (email[i] === '@') {
+            atCount++
+        }
+    }
+    if (atCount !== 1) {
+        console.log("gmail khass tkon fih @ wahda sfi")
+        return false
+    }
+
+    if (email.includes(' ')) {
+        console.log("email makhsech yekon fih espace lwest")
+        return false
+    }
+
+    email = email.toLowerCase()
+
+    if (emails.includes(email)) {
+        console.log("had lemail déja dakhel")
+        return false
+    }
+    emails.push(email)
+
+    console.log("email is correcte", email)
+    return email
+}
+
+
+validateEmail("  Rania.Assal@example.com  ")
+validateEmail("rania.assal@example.com")
+validateEmail("rania.assal@ex ample.com")
+validateEmail("rania1234")
+validateEmail("rania.assal@example@example.com")
+validateEmail("rania.assal@example.com")
+
+
+//  # Age:
+let ages = []
+
+function validateAge(age) {
+    age = age.trim()
+
+
+    if (age.length === 0 || age.length > 2) {
+        console.log("lage khass yekono fih joj 2ara9am mn 1 hta l 99")
+        return false
+    }
+
+    let numericAge = parseInt(age)
+    if (numericAge < 1 || numericAge > 99) {
+        console.log("lage khass yekon mabin 1 ou 99")
+        return false
+    }
+
+    if (ages.includes(numericAge)) {
+        console.log("deja dakhel lage")
+        return false
+    }
+
+
+    ages.push(numericAge)
+
+    console.log("lage nice", numericAge)
+    return numericAge
+}
+
+validateAge(" 25 ")
+validateAge(" 0 ")
+validateAge("100")
+validateAge("abc")
+validateAge(" 9 ")
+validateAge(" 55 ")
+validateAge(" 9 9 ")
+validateAge("25")
+
