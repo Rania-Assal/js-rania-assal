@@ -114,3 +114,44 @@ while (true) {
     }
 }
 
+
+// # Name (Full):
+let name = "Rania Assal"
+
+function validateName(name) {
+
+    name = name.trim()
+
+    let nameWithoutSpaces = name.split(' ').join('')
+    if (nameWithoutSpaces.length < 5) {
+        console.log("name khasse yekon fih 5 les letres 3ala l2a9al")
+        return false
+    }
+
+    for (let i = 0; i < name.length; i++) {
+        let char = name[i]
+        if (char >= '0' && char <= '9') {
+            console.log("name makhsch yekono fih 2ar9am")
+            return false
+        }
+
+        let specialChars = ['@', '#', '$', '%', '&', '*', '(', ')', '!', '?', '+'];
+        if (specialChars.includes(char)) {
+            console.log("name makhsch yekono fih chi romoz")
+            return false
+        }
+    }
+
+    let words = name.split(' ')
+    let formattedName = words.map(word => {
+
+        return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
+    }).join(' ')
+
+    console.log("name", formattedName)
+    return formattedName
+}
+validateName(name)
+
+
+
