@@ -1,22 +1,4 @@
 
-let user = {
-    username: 'rania',
-    password: '1234',
-    balance: 2500
-}
-
-let inputUsername = prompt('Smitk?')
-let inputPassword = prompt('Mot de passe dyalk?')
-
-
-if (inputUsername === user.username && inputPassword === user.password) {
-    console.log(' Marhba bik, ' + user.username + '!')
-    console.log(' Rssidak howa: ' + user.balance + ' dh')
-} else {
-    console.log(' Smitk ola lmot de passe ghalta!')
-}
-
-
 let users = []
 
 while (true) {
@@ -72,7 +54,7 @@ while (true) {
         let user = users.find(user => user.username === username && user.password === password)
 
         if (user) {
-            alert("welcome" + user.username + "\n rassidok " + user.balance + "dh")
+            alert("welcome" + user.username + "\n chal 3andek " + user.balance + "dh")
             console.log("tassjil dokhol najih " + user.username)
         } else {
             alert(" issm lmostakhdim aw password ralat")
@@ -94,11 +76,12 @@ while (true) {
 
         let user = users.find(user => user.username === username && user.password === password)
 
-        if (user) {
-            alert("name aw lpssword ralat")
-            console.log("error in password " + username)
-            continue
-        }
+       if (user === undefined) {
+    alert("name aw password ralat")
+    console.log("error in password " + username)
+    continue
+}
+
 
         let newPassword = prompt("enter password")
 
@@ -173,7 +156,7 @@ function validateEmail(email) {
         }
     }
     if (atCount !== 1) {
-        console.log("gmail khass tkon fih @ wahda sfi")
+        console.log("gmail khass tkon fih @ wahda safi")
         return false
     }
 
@@ -241,4 +224,97 @@ validateAge(" 9 ")
 validateAge(" 55 ")
 validateAge(" 9 9 ")
 validateAge("25")
+
+// # Password:
+function validatePassword(password) {
+    let trimmed = password.trim()
+
+
+    if (trimmed !== password) {
+        console.log("password makhsoch yebda wela yessali bi espace")
+        return false
+    }
+
+
+    for (let i = 0; i < password.length; i++) {
+        if (password[i] === ' ') {
+            console.log("password makhsch yekon fih espace lwest")
+            return false
+        }
+    }
+
+
+    let specialChars = ["@", "#", "-", "+", "*", "/"]
+    let hasSpecial = false
+
+    for (let i = 0; i < password.length; i++) {
+        if (specialChars.includes(password[i])) {
+            hasSpecial = true
+            break
+        }
+    }
+
+    if (hasSpecial) {
+        console.log("pssword khass yekon fih ramz khass")
+        return false
+    }
+
+    if (password.length < 7) {
+        console.log("password khass yekon fih 7 les letres wela kter")
+        return false
+    }
+
+    console.log("password accepter")
+    return true
+}
+
+validatePassword(" pass@12")
+validatePassword("pass@12 ")
+validatePassword("pa ss@12")
+validatePassword("pass1234")
+validatePassword("myp@ss12")
+
+
+// # Password_confirmed:
+function confirmPassword(password, confirmed) {
+    if (password !== confirmed) {
+        console.log("pssword mamentabe9ch bloquée")
+        return false
+    }
+
+    console.log("password shih")
+    return true
+}
+let password = "myp@ss12"
+
+
+confirmPassword(password, "myp@ss12")
+confirmPassword(password, "myp@ss123")
+
+
+//   * If the user chooses to log in, here are the details they must enter:
+//* Email:
+//? - Check if the email exists in our Database.
+let userse = [
+    { email: "test1@example.com", password: "pass@123" },
+    { email: "rania@domain.com", password: "myp@ss12" }
+];
+
+function emailExists(email, database) {
+    return database.find(user => user.email === email);
+}
+
+function login() {
+    let inputEmail = prompt("Dakhel l'email dyalek:");
+    let inputPassword = prompt("Dakhel l'password dyalek:");
+
+    let user = emailExists(inputEmail, userse);
+
+    if (user && user.password === inputPassword) {
+        console.log("Marhba bik " + user.email);
+    } else {
+        console.log("l'email aw l'password ghalta!");
+    }
+}
+
 
